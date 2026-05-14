@@ -97,27 +97,28 @@ export function PhysicsShards() {
       ))}
 
       {coins.map((_, i) => (
-        <RigidBody
-          key={`coin-${i}`}
-          colliders="cylinder"
-          mass={0.2}
-          position={[0, 0.5, 0]}
-          linearDamping={0.3}
-          angularDamping={0.4}
-          ref={(api) => { coinApis.current[i] = api; }}
-        >
-          <mesh rotation={[Math.PI / 2, 0, 0]}>
-            <cylinderGeometry args={[0.25, 0.25, 0.08, 16]} />
-            <meshStandardMaterial
-              color="#ffd700"
-              emissive="#ffaa00"
-              emissiveIntensity={0.8}
-              roughness={0.1}
-              metalness={1}
-            />
-          </mesh>
-        </RigidBody>
-      ))}
+  <RigidBody
+    key={`coin-${i}`}
+    colliders={false}
+    mass={0.2}
+    position={[0, 0.5, 0]}
+    linearDamping={0.3}
+    angularDamping={0.4}
+    ref={(api) => { coinApis.current[i] = api; }}
+  >
+    <mesh rotation={[Math.PI / 2, 0, 0]}>
+      <cylinderGeometry args={[0.25, 0.25, 0.08, 16]} />
+      <meshStandardMaterial
+        color="#ffd700"
+        emissive="#ffaa00"
+        emissiveIntensity={0.8}
+        roughness={0.1}
+        metalness={1}
+      />
+    </mesh>
+    <CylinderCollider args={[0.25, 0.08]} />
+  </RigidBody>
+))}
     </>
   );
 }
