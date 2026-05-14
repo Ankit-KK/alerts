@@ -1,10 +1,11 @@
 'use client';
+import { Suspense } from 'react';
 import { EffectComposer, Bloom, Noise, ChromaticAberration, Vignette, DepthOfField } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 import { useSearchParams } from 'next/navigation';
 import { Vector2 } from 'three';
 
-export function PostProcessingEffects() {
+function PostProcessingEffectsInner() {
   const searchParams = useSearchParams();
   const lowPerf = searchParams.get('perf') === 'low';
   return (
@@ -38,5 +39,13 @@ export function PostProcessingEffects() {
         <></>
       )}
     </EffectComposer>
+  );
+}
+
+export function PostProcessingEffects() {
+  return (
+    <Suspense fallback={null}>
+      <PostProcessingEffectsInner />
+    </Suspense>
   );
 }
