@@ -1,13 +1,12 @@
 'use client';
-
 import { EffectComposer, Bloom, Noise, ChromaticAberration, Vignette, DepthOfField } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing';
 import { useSearchParams } from 'next/navigation';
+import { Vector2 } from 'three';
 
 export function PostProcessingEffects() {
   const searchParams = useSearchParams();
   const lowPerf = searchParams.get('perf') === 'low';
-
   return (
     <EffectComposer>
       {!lowPerf ? (
@@ -22,7 +21,7 @@ export function PostProcessingEffects() {
         <></>
       )}
       <Noise opacity={0.02} blendFunction={BlendFunction.OVERLAY} />
-      <ChromaticAberration offset={[0.001, 0.001]} />
+      <ChromaticAberration offset={new Vector2(0.001, 0.001)} />
       <Vignette darkness={0.5} offset={0.3} />
       {!lowPerf ? (
         <DepthOfField
