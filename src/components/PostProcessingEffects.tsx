@@ -18,7 +18,9 @@ export function PostProcessingEffects() {
           radius={0.5}
           mipmapBlur
         />
-      ) : null}
+      ) : (
+        <></>
+      )}
       <Noise opacity={0.02} blendFunction={BlendFunction.OVERLAY} />
       <ChromaticAberration offset={[0.001, 0.001]} />
       <Vignette darkness={0.5} offset={0.3} />
@@ -29,7 +31,9 @@ export function PostProcessingEffects() {
           bokehScale={2}
           height={480}
         />
-      ) : null}
+      ) : (
+        <></>
+      )}
     </EffectComposer>
   );
 }
