@@ -21,7 +21,11 @@ export function PostProcessingEffects() {
         <></>
       )}
       <Noise opacity={0.02} blendFunction={BlendFunction.OVERLAY} />
-      <ChromaticAberration offset={new Vector2(0.001, 0.001)} />
+      <ChromaticAberration
+        offset={new Vector2(0.001, 0.001)}
+        radialModulation={false}
+        modulationOffset={0}
+      />
       <Vignette darkness={0.5} offset={0.3} />
       {!lowPerf ? (
         <DepthOfField
