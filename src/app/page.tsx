@@ -1,5 +1,4 @@
 'use client';
-
 import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
@@ -10,11 +9,10 @@ import { EnvironmentSetup } from '@/components/EnvironmentSetup';
 import { PostProcessingEffects } from '@/components/PostProcessingEffects';
 import { useFakeWebSocket } from '@/hooks/useFakeWebSocket';
 
-export default function Home() {
+function HomeInner() {
   useFakeWebSocket();
   const searchParams = useSearchParams();
   const showPerf = searchParams.get('debug') === '1';
-
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <Canvas
@@ -38,5 +36,13 @@ export default function Home() {
         </Suspense>
       </Canvas>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeInner />
+    </Suspense>
   );
 }
